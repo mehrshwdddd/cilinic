@@ -66,4 +66,14 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function isdoctor()
+    {
+      return $this->role==='doctor';
+    }
+
+    public function issecretary()
+    {
+        return $this->role==='secretary';
+    }
 }
