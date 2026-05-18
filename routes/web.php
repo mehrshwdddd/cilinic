@@ -2,11 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\front\HomepageController;
 
 
 
 Route::resource('appointments', AppointmentController::class);
-
+Route::get('/', [HomepageController::class, 'index'])->name('homepage');
 
 
 Route::middleware([

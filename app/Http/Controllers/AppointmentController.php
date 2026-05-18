@@ -22,8 +22,7 @@ class AppointmentController extends Controller
      */
     public function create()
     {
-        $patients = Patient::all();
-        return view('appointments.create', compact('patients'));
+
     }
 
     /**
@@ -34,6 +33,7 @@ class AppointmentController extends Controller
       $request->validate([
           'patient_id'=>'required',
           'appointment_date'=>'required,date',
+          'national_code'=>'required',
           'appointment_time'=>'required',
       ]);
 
