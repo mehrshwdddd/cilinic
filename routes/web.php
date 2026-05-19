@@ -3,11 +3,20 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\front\HomepageController;
+use App\Http\Controllers\MedicalDocumentController;
 
 
 
 Route::resource('appointments', AppointmentController::class);
 Route::get('/', [HomepageController::class, 'index'])->name('homepage');
+
+
+Route::middleware('auth')->group(function (){
+    Route::resource('medical-documents', MedicalDocumentController::class);
+});
+
+
+
 
 
 Route::middleware([

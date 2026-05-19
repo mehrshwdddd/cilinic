@@ -13,4 +13,9 @@ class Patient extends Model
         'national_code',
         'phone_number',
     ];
+
+    public function medicaldocument()
+    {
+        return $this->hasMany(MedicalDocument::class);
+    }
 }
