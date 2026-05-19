@@ -37,6 +37,33 @@ class AppointmentController extends Controller
           ]);
           return back()->with('success','Appointment status updated successfully');
     }
+    public function reports(Request $request)
+    {
+        $appointments = Appointment::with('patient')
+
+            ->when($request->status, function($query) use ($request){
+                $query->whereIn('status', $request->status);
+            })
+
+            ->when($request->from_date, function($query) use ($request){
+
+                $query->whereDate('appointment_date', '>=', $request->from_date);
+            })
+            ->when($request->to_date, function($query) use ($request){
+
+                $query->whereDate('appointment_date', '<=', $request->to_date);
+            })
+            ->when($request->patient, function($query) use ($request){
+
+                $query->whereHas('patient', function($q) use ($request){
+                    $q->where('first_name', 'like', '%'.$request->patient.'%')
+                        ->orWhere('last_name', 'like', '%'.$request->patient.'%')
+                        ->orWhere('national_code', 'like', '%'.$request->patient.'%');
+                });
+            })->latest()->paginate(10);
+
+        return view('front.panel.appointments.reports', compact('appointments'));
+    }
 
     /**
      * Show the form for creating a new resource.

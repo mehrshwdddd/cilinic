@@ -37,6 +37,7 @@ Route::middleware([
         return 'Secretary Panel';
 
     });
+    Route::get('/reports',[AppointmentController::class,'reports'])->name('reports.index');
 
 });
 
