@@ -19,6 +19,13 @@ Route::middleware(['auth'])->group(function (){
     Route::get('/panel', [PanelController::class, 'index'])->name('panel');
 });
 
+//appointment routes
+Route::middleware(['auth'])->group(function (){
+    Route::get('/appointments',[AppointmentController::class,'index'])->name('appointments.index');
+    Route::patch('/appointments/{appointment}/status',[AppointmentController::class,'updatestatus'],)
+        ->name('appointments.status');
+    Route::delete('/appointments/{appointment}',[AppointmentController::class,'destroy'])->name('appointments.destroy');
+});
 
 
 
