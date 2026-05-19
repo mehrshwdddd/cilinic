@@ -3,7 +3,11 @@
         <h1 class="text-4xl font-bold mb-8">
             Panel
         </h1>
-
+    @if(auth()->user()->isSecretary())
+        <a href="{{ route('settings.edit') }}">
+            Settings
+        </a>
+    @endif
         <div class="grid md:grid-cols-4 gap-6 mb-10">
 
             <div class="bg-white p-6 rounded-2xl shadow">

@@ -11,6 +11,11 @@ class PanelController extends Controller
 {
     public function index()
     {
+        if(auth()->user()->isDoctor())
+        {
+            $appointments = Appointment::latest()->paginate(5);
+            return view('doctor.dashboard', compact('appointments'));
+        }
         $patientsCount = Patient::count();
         $appointmentsCount = Appointment::count();
         $pendingAppointments = Appointment::where('status', 'pending')->count();
