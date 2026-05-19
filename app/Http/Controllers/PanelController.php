@@ -18,7 +18,7 @@ class PanelController extends Controller
         $documentsCount = MedicalDocument::count();
         $latestAppointments = Appointment::with('patient')->latest()->take(5)->get();
 
-        return view('dashboard.index', compact('patientsCount', 'appointmentsCount',
+        return view('front.panel.index', compact('patientsCount', 'appointmentsCount',
             'pendingAppointments',
             'documentsCount',
             'latestAppointments'

@@ -16,8 +16,10 @@ Route::middleware('auth')->group(function (){
 });
 
 Route::middleware(['auth'])->group(function (){
-Route::get('/panel', [PanelController::class, 'index'])->name('panel');
+    Route::get('/panel', [PanelController::class, 'index'])->name('panel');
 });
+
+
 
 
 
