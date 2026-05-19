@@ -1,4 +1,6 @@
-<div class="max-w-3xl mx-auto p-6">
+
+<x-app-layout>
+    <div class="max-w-3xl mx-auto p-6">
 
         <h1 class="text-4xl font-bold mb-8">
             Clinic Settings
@@ -58,4 +60,4 @@
         </form>
 
     </div>
-
+</x-app-layout>

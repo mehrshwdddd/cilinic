@@ -12,7 +12,7 @@
 
             @auth
 
-                <a href="{{ route('dashboard') }}"
+                <a href="{{ route('panel') }}"
                    class="bg-green-500 hover:bg-green-600 text-white px-5 py-2 rounded-xl transition">
                     Dashboard
                 </a>

@@ -8,7 +8,7 @@ use App\Http\Controllers\PanelController;
 use App\Http\Controllers\SettingController;
 
 
-Route::resource('appointments', AppointmentController::class);
+
 Route::get('/', [HomepageController::class, 'index'])->name('homepage');
 
 Route::middleware(['auth'])->group(function (){
@@ -24,6 +24,7 @@ Route::middleware(['auth'])->group(function (){
     Route::patch('/appointments/{appointment}/status',[AppointmentController::class,'updatestatus'],)
         ->name('appointments.status');
     Route::delete('/appointments/{appointment}',[AppointmentController::class,'destroy'])->name('appointments.destroy');
+    Route::get('/appointments/store',[AppointmentController::class,'store'])->name('appointments.store');
 });
 
 Route::middleware([
@@ -41,13 +42,3 @@ Route::middleware([
 
 });
 
-
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-});

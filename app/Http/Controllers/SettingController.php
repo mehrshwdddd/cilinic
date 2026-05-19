@@ -46,7 +46,7 @@ class SettingController extends Controller
     {
         $setting = Setting::first();
 
-        return view('settings.edit', compact('setting'));
+        return view('front.panel.setting.edit', compact('setting'));
     }
 
     /**

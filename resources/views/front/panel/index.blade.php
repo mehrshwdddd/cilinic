@@ -1,3 +1,4 @@
+<x-app-layout>
 <div class="p-6 max-w-7xl mx-auto">
 
         <h1 class="text-4xl font-bold mb-8">
@@ -138,3 +139,4 @@
             </table>
         </div>
     </div>
+</x-app-layout>
