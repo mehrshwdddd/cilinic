@@ -11,10 +11,31 @@ class AppointmentController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $appointments=Appointment::with('patient')->latest()->paginate(5);
-        return view('appointments.index',compact('appointments'));
+        $appointments = Appointment::with('patient')
+
+            ->when($request->status, function($query) use ($request){
+                $query->where('status', $request->status);})
+            ->when($request->search, function($query) use ($request){
+                $query->whereHas('patient', function($q) use ($request){
+                    $q->where('first_name', 'like', '%'.$request->search.'%'
+                    )->orWhere('last_name', 'like', '%'.$request->search.'%')
+                        ->orWhere('national_code', 'like', '%'.$request->search.'%');
+                });
+            })->latest()->paginate(5);
+        return view('front.panel.appointments.index',compact('appointments'));
+    }
+
+    public function updatestatus(Request $request,Appointment $appointment)
+    {
+          $request->validate([
+              'status'=>'required|in:pending,approved,cancelled'
+          ]);
+          $appointment->update([
+              'status'=>$request->status
+          ]);
+          return back()->with('success','Appointment status updated successfully');
     }
 
     /**
@@ -85,6 +106,7 @@ class AppointmentController extends Controller
      */
     public function destroy(Appointment $appointment)
     {
-        //
+        $appointment->delete();
+        return back()->with('success','Appointment deleted successfully');
     }
 }
