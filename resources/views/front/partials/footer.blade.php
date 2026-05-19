@@ -2,18 +2,20 @@
     <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-8">
         <div>
             <h3 class="text-white font-semibold mb-3">address</h3>
-            <p>babol,oghaf square</p>
+            <p>{{$setting->address}}</p>
         </div>
-        
+
         <div>
             <h3 class="text-white font-semibold mb-3">phone number</h3>
-            <p>09117457989</p>
+            <p>{{$setting->phone}}}</p>
         </div>
-        
         <div>
-            <h3 class="text-white font-semibold mb-3">working time</h3>
-            <p>saturday until thursday</p>
-            <p>9 a.m. to 10 p.m. </p>
+            <h3 class="text-white font-semibold mb-3">clinic name</h3>
+            <p>{{$setting->clinic_name}}}</p>
+        </div>
+
+        <div class="max-w-6xl mx-auto px-6 mt-8">
+             {{$setting->map_address}}
         </div>
     </div>
 </div>
