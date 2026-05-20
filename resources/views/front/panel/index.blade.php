@@ -146,14 +146,14 @@
                                     @elseif($appointment->status == 'cancelled')
 
                                         <span class="bg-red-100 text-red-700 px-4 py-2 rounded-full text-sm font-semibold">
-                    Cancelled
-                </span>
+                                            Cancelled
+                                        </span>
 
                                     @else
 
                                         <span class="bg-yellow-100 text-yellow-700 px-4 py-2 rounded-full text-sm font-semibold">
-                    Pending
-                </span>
+                                            Pending
+                                        </span>
 
                                     @endif
 
@@ -168,23 +168,13 @@
                                             <a href="{{ asset('storage/'.$document->file) }}"
                                                target="_blank"
                                                class="inline-flex items-center gap-2 bg-blue-50 hover:bg-blue-100 text-blue-600 px-3 py-2 rounded-xl text-sm font-medium transition">
-
                                                 {{ $document->title }}
-
                                             </a>
-
                                         @empty
-
-                                            <span class="text-gray-400 text-sm">
-                        No Document
-                    </span>
-
+                                            <span class="text-gray-400 text-sm">No Document</span>
                                         @endforelse
-
                                     </div>
-
                                 </td>
-
                             </tr>
 
                         @endforeach
