@@ -33,6 +33,7 @@
                     <tr class="border-t">
                         <td class="p-3">
                             {{ $document->patient->first_name }}
+                            {{$document->patient->last_name}}
                         </td>
                         <td class="p-3">
                             {{ $document->title }}

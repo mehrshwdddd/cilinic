@@ -111,6 +111,9 @@
                             <th class="text-left p-5 text-gray-600 font-semibold">
                                 Status
                             </th>
+                            <th class="text-left p-5 text-gray-600 font-semibold">
+                                medical document
+                            </th>
                         </tr>
                         </thead>
                         <tbody>
@@ -118,36 +121,70 @@
                         @foreach($latestAppointments as $appointment)
 
                             <tr class="border-b hover:bg-gray-50 transition">
+
                                 <td class="p-5 font-medium text-gray-700">
                                     {{ $appointment->patient->first_name }}
                                     {{ $appointment->patient->last_name }}
                                 </td>
+
                                 <td class="p-5 text-gray-600">
                                     {{ $appointment->appointment_date }}
                                 </td>
+
                                 <td class="p-5 text-gray-600">
-
                                     {{ $appointment->appointment_time }}
-
                                 </td>
+
                                 <td class="p-5">
 
                                     @if($appointment->status == 'approved')
+
                                         <span class="bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-semibold">
-                                            Approved
-                                        </span>
+                    Approved
+                </span>
+
                                     @elseif($appointment->status == 'cancelled')
 
                                         <span class="bg-red-100 text-red-700 px-4 py-2 rounded-full text-sm font-semibold">
-                                            Cancelled
-                                        </span>
+                    Cancelled
+                </span>
 
                                     @else
+
                                         <span class="bg-yellow-100 text-yellow-700 px-4 py-2 rounded-full text-sm font-semibold">
-                                            Pending
-                                        </span>
+                    Pending
+                </span>
+
                                     @endif
+
                                 </td>
+
+                                <td class="p-5">
+
+                                    <div class="flex flex-col gap-2">
+
+                                        @forelse($appointment->patient->medicalDocuments as $document)
+
+                                            <a href="{{ asset('storage/'.$document->file) }}"
+                                               target="_blank"
+                                               class="inline-flex items-center gap-2 bg-blue-50 hover:bg-blue-100 text-blue-600 px-3 py-2 rounded-xl text-sm font-medium transition">
+
+                                                {{ $document->title }}
+
+                                            </a>
+
+                                        @empty
+
+                                            <span class="text-gray-400 text-sm">
+                        No Document
+                    </span>
+
+                                        @endforelse
+
+                                    </div>
+
+                                </td>
+
                             </tr>
 
                         @endforeach

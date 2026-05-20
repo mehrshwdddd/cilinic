@@ -14,7 +14,7 @@ class Patient extends Model
         'phone_number',
     ];
 
-    public function medicaldocument()
+    public function medicaldocuments()
     {
         return $this->hasMany(MedicalDocument::class);
     }
