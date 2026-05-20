@@ -10,6 +10,7 @@ use App\Http\Controllers\SettingController;
 
 
 Route::get('/', [HomepageController::class, 'index'])->name('homepage');
+Route::post('/appointments/store',[AppointmentController::class,'store'])->name('appointments.store');
 
 Route::middleware(['auth'])->group(function (){
     //panel routes
@@ -24,7 +25,6 @@ Route::middleware(['auth'])->group(function (){
     Route::patch('/appointments/{appointment}/status',[AppointmentController::class,'updatestatus'],)
         ->name('appointments.status');
     Route::delete('/appointments/{appointment}',[AppointmentController::class,'destroy'])->name('appointments.destroy');
-    Route::get('/appointments/store',[AppointmentController::class,'store'])->name('appointments.store');
 });
 
 Route::middleware([

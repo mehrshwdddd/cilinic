@@ -78,30 +78,42 @@ class AppointmentController extends Controller
      */
     public function store(Request $request)
     {
-      $request->validate([
-          'patient_id'=>'required',
-          'appointment_date'=>'required,date',
-          'national_code'=>'required',
-          'appointment_time'=>'required',
-      ]);
+        $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'national_code' => 'required',
+            'phone_number' => 'required',
+            'appointment_date' => 'required|date',
+            'appointment_time' => 'required',
+        ]);
 
-      $exists=Appointment::where('appointment_date',$request->appointment_date)
-          ->where('appointment_time',$request->appointment_time)->exists();
+        $exists = Appointment::where('appointment_date', $request->appointment_date)
+            ->where('appointment_time', $request->appointment_time)
+            ->exists();
 
-      if($exists)
-      {
-          return back()->withErrors(['appointment_time'=>'This appointment already exists'])->withInput();
-      }
+        if ($exists) {
+            return back()->withErrors(['appointment_time' => 'This appointment already exists'])->withInput();
+        }
 
-      Appointment::create([
-          'patient_id'=>$request->patient_id,
-          'appointment_date'=>$request->appointment_date,
-          'appointment_time'=>$request->appointment_time,
-          'status'=>'pending',
-      ]);
+        $patient = Patient::firstOrCreate(
+            [
+                'national_code' => $request->national_code
+            ],
+            [
+                'first_name' => $request->first_name,
+                'last_name' => $request->last_name,
+                'phone_number' => $request->phone_number,
+            ]
+        );
 
-      return redirect()->route('appointments.index')
-          ->with('success','Appointment created successfully.');
+        Appointment::create([
+            'patient_id' => $patient->id,
+            'appointment_date' => $request->appointment_date,
+            'appointment_time' => $request->appointment_time,
+            'status' => 'pending',
+        ]);
+
+        return back()->with('success', 'Appointment created successfully.');
     }
 
     /**
