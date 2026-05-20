@@ -10,6 +10,7 @@ class Setting extends Model
         'clinic_name',
         'address',
         'phone',
-        'map_address'
+        'map_lat',
+        'map_lng',
     ];
 }

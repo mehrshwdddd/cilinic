@@ -66,7 +66,8 @@ class SettingController extends Controller
                 'clinic_name' => $request->clinic_name,
                 'phone' => $request->phone,
                 'address' => $request->address,
-                'map_address' => $request->map_address,
+                'map_lat' => $request->map_lat,
+                'map_lng' => $request->map_lng,
             ]
 
         );

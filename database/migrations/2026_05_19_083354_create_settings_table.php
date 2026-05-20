@@ -16,7 +16,8 @@ return new class extends Migration
             $table->string('clinic_name');
             $table->string('address');
             $table->string('phone');
-            $table->string('map_address');
+            $table->string('map_lat')->nullable();
+            $table->string('map_lng')->nullable();
             $table->timestamps();
         });
     }
