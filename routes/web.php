@@ -17,7 +17,13 @@ Route::middleware(['auth'])->group(function (){
     Route::get('/panel', [PanelController::class, 'index'])->name('panel');
     //medical documents routes
     Route::resource('medical-documents', MedicalDocumentController::class);
-    //setting routes
+});
+
+Route::middleware([
+    'auth',
+    'role:secretary'
+])->group(function () {
+    //settings routes
     Route::get('/settings', [SettingController::class, 'edit'])->name('settings.edit');
     Route::put('/settings', [SettingController::class, 'update'])->name('settings.update');
     //appointments routes
@@ -25,19 +31,7 @@ Route::middleware(['auth'])->group(function (){
     Route::patch('/appointments/{appointment}/status',[AppointmentController::class,'updatestatus'],)
         ->name('appointments.status');
     Route::delete('/appointments/{appointment}',[AppointmentController::class,'destroy'])->name('appointments.destroy');
-});
-
-Route::middleware([
-    'auth',
-    'role:secretary'
-])->group(function () {
-    Route::get('/settings', [SettingController::class, 'edit'])->name('settings.edit');
-    Route::put('/settings', [SettingController::class, 'update'])->name('settings.update');
-    Route::get('/patients', function () {
-
-        return 'Secretary Panel';
-
-    });
+    //reports routes
     Route::get('/reports',[AppointmentController::class,'reports'])->name('reports.index');
 
 });
