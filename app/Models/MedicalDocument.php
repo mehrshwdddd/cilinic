@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
-
+use App\Models\Patient;
 use Illuminate\Database\Eloquent\Model;
 
 class MedicalDocument extends Model
@@ -12,8 +12,8 @@ class MedicalDocument extends Model
         'file',
     ];
 
-    public function patient()
+    public function patient(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        $this->belongsTo(Patient::class);
+       return $this->belongsTo(Patient::class);
     }
 }

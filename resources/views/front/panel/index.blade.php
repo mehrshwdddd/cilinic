@@ -13,16 +13,20 @@
 
                     <div class="flex flex-wrap gap-3 mt-5 md:mt-0">
                         <a href="{{ route('settings.edit') }}"
-                           class="bg-white hover:bg-gray-50 text-gray-700 px-5 py-3 rounded-2xl shadow transition font-semibold">
+                           class="bg-teal-400 text-white px-5 py-3 rounded-2xl shadow transition font-semibold">
                             Settings
                         </a>
                         <a href="{{ route('reports.index') }}"
-                           class="bg-blue-500 hover:bg-blue-600 text-white px-5 py-3 rounded-2xl shadow transition font-semibold">
+                           class="bg-blue-500 text-white px-5 py-3 rounded-2xl shadow transition font-semibold">
                             Reports
                         </a>
                         <a href="{{ route('appointments.index') }}"
-                           class="bg-green-500 hover:bg-green-600 text-white px-5 py-3 rounded-2xl shadow transition font-semibold">
+                           class="bg-green-500 text-white px-5 py-3 rounded-2xl shadow transition font-semibold">
                             Appointments
+                        </a>
+                        <a href="{{ route('medical-documents.index') }}"
+                           class="bg-purple-500 text-white px-5 py-3 rounded-2xl shadow transition font-semibold">
+                            Medical Documents
                         </a>
                     </div>
                 @endif
@@ -70,7 +74,6 @@
                 </div>
 
                 <div class="bg-white rounded-3xl shadow-lg p-6 border border-gray-100">
-
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-gray-500 text-sm">

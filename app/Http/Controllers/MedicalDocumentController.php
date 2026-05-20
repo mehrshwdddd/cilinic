@@ -14,7 +14,7 @@ class MedicalDocumentController extends Controller
     public function index()
     {
         $documents=MedicalDocument::with('patient')->latest()->paginate(5);
-        return view('medical-documents-index',compact('documents'));
+        return view('front.panel.medical-documents.index',compact('documents'));
     }
 
     /**
@@ -23,7 +23,7 @@ class MedicalDocumentController extends Controller
     public function create()
     {
         $patients=Patient::all();
-        return view('medical-documents.create',compact('patients'));
+        return view('front.panel.medical-documents.create',compact('patients'));
     }
 
     /**

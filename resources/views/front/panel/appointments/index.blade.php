@@ -4,9 +4,7 @@
     <div class="flex justify-between items-center mb-6">
 
         <h1 class="text-4xl font-bold">
-
             Appointments
-
         </h1>
 
     </div>
